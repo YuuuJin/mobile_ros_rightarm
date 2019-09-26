@@ -148,8 +148,15 @@ bool _isFirst_both_L = true;
 float Move_X = 0.;
 float Move_Y = 0.;
 float Move_R = 0.;
+double VelX = 0.;
+double VelY = 0.;
+double VelT = 0.;
+double VelX_before = 0.;
+double VelY_before = 0.;
+double VelT_before = 0.;
 float MotorSpeed[3] = {0.0, };
 /* Joystick Move */
+void MoveWheelVelocity();
 void CalculateMovingEverage(void);
 void ManualMoveRHand();
 void ManualMoveLHand();

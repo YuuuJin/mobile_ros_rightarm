@@ -46,6 +46,7 @@ ROSWorker::ROSWorker(){
         connect(serverPODOROS, SIGNAL(SIG_NewConnection()), this, SLOT(onNewConnection()));
     }
 
+    connect(serverPODOROS, SIGNAL(SIG_DisConnected()),this,SLOT(onDisconnect()));
     serverJOINTREF = new Ref_Receive_Server();
     serverJOINTREF->RBServerOpen(QHostAddress::AnyIPv4, 7000);
 }
@@ -54,6 +55,13 @@ void ROSWorker::onNewConnection(){
     timePrev = timeCur = sharedSEN->Sim_Time_sec + sharedSEN->Sim_Time_nsec/1000000000.0;
 }
 
+void ROSWorker::onDisconnect()
+{
+    printf("ROS disconnected\n");
+    sharedROS->COMMAND.CMD_GRIPPER = GRIPPER_STOP;
+    sharedROS->COMMAND.CMD_JOINT = MODE_E_STOP;
+    sharedROS->COMMAND.CMD_WHEEL = WHEEL_MOVE_STOP;
+}
 
 void ROSWorker::onFastTimer(){
     // read data from ROS
@@ -132,7 +140,7 @@ void ROSWorker::SendtoJOINTREF(){
 }
 
 void ROSWorker::ReadfromROS(){
-//    printf("Read From ROS\n");
+    printf("Read From ROS\n");
     QByteArray tempData = serverPODOROS->dataReceived[0];
     serverPODOROS->dataReceived.pop_front();
 
@@ -144,6 +152,7 @@ void ROSWorker::ReadfromROS(){
     //read action
     sharedROS->Arm_action = RXData.ros2podo_data.Arm_action;
     sharedROS->Base_action = RXData.ros2podo_data.Base_action;
+    printf("%f\n",RXData.ros2podo_data.Base_action.wheel.VelX);
     sharedROS->Gripper_action.side = RXData.ros2podo_data.Gripper_action.side;
     sharedROS->Gripper_action.desired_mm = RXData.ros2podo_data.Gripper_action.desired_mm;
     sharedROS->ROSindex = RXData.ros2podo_data.index;

@@ -35,6 +35,7 @@ public:
 private slots:
     void onFastTimer();
     void onNewConnection();
+    void onDisconnect();
 
     void onPODO2ROS();
     void onROS2PODO();

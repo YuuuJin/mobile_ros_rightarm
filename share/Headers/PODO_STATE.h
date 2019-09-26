@@ -16,7 +16,8 @@ enum ROBOT_STATE_ARM{
 
 enum ROBOT_STATE_BASE{
     BASE_NOT_MOVE = 0,
-    BASE_MOVING
+    BASE_MOVING,
+    BASE_VEL_MOVING
 };
 
 typedef struct _SENSOR_DATA_

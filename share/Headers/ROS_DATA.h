@@ -61,6 +61,10 @@ typedef struct _WHEELMOVE_DATA_
     double MoveX;
     double MoveY;
     double ThetaDeg;
+
+    double VelX;
+    double VelY;
+    double VelTheta;
 }WHEELMOVE_DATA;
 
 

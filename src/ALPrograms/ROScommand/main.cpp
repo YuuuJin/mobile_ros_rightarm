@@ -222,6 +222,7 @@ int main(int argc, char *argv[])
 
     sharedROS->state_arm = ROBOT_NOT_MOVE;
     sharedROS->state_base = BASE_NOT_MOVE;
+    sharedROS->COMMAND.CMD_WHEEL = WHEEL_BREAK;
     usleep(500*1000);
 
     // WBIK Initialize--------------------------------------
@@ -415,6 +416,31 @@ int main(int argc, char *argv[])
             OMNImove.StartOMNImove(sharedROS->Base_action.wheel.MoveX,sharedROS->Base_action.wheel.MoveY,sharedROS->Base_action.wheel.ThetaDeg);
             sharedROS->COMMAND.CMD_WHEEL = WHEEL_BREAK;
             break;
+        }
+        case WHEEL_MOVE_VELOCITY:
+        {
+            if(sharedROS->state_base == BASE_VEL_MOVING)
+            {
+                MoveWheelVelocity();
+                break;
+            }
+            else{
+                if(CheckRobotState_BASE() == false)
+                {
+                    sharedROS->COMMAND.CMD_WHEEL = WHEEL_BREAK;
+                    break;
+                }
+                sharedROS->state_base = BASE_VEL_MOVING;
+                sharedROS->Base_action.wheel.VelTheta = 0.;
+                sharedROS->Base_action.wheel.VelX = 0.;
+                sharedROS->Base_action.wheel.VelY = 0.;
+                OMNImove.InitWheelInfo();
+                joint->RefreshToCurrentReference(WHEELonly);
+                usleep(20*1000);
+                joint->SetAllMotionOwnerWHEEL();
+                MoveWheelVelocity();
+                break;
+            }
         }
         }
 
@@ -741,6 +767,55 @@ void CalculateMovingEverage(void)
     OMNImove.RWHinfo.WheelVel_ms = temp1/120.0;
     OMNImove.LWHinfo.WheelVel_ms = temp2/120.0;
     OMNImove.BWHinfo.WheelVel_ms = temp3/120.0;
+}
+
+void MoveWheelVelocity()
+{
+    printf("x = %f, y = %f, t = %f\n",sharedROS->Base_action.wheel.VelX,sharedROS->Base_action.wheel.VelY,sharedROS->Base_action.wheel.VelTheta);
+    VelX = VelX_before*0.2 + 0.8*sharedROS->Base_action.wheel.VelX;
+    VelY = VelY_before*0.2 + 0.8*sharedROS->Base_action.wheel.VelY;
+    VelT = VelT_before*0.2 + 0.8*sharedROS->Base_action.wheel.VelTheta;
+
+    if(fabs(VelX) >1.) VelX = 0.;
+    if(fabs(VelY) >1.) VelY = 0.;
+    if(fabs(VelT) >1.) VelT = 0.;
+
+    if(VelX == 0. && VelY == 0. && VelT == 0.){
+        pushData(RWHList, 0.0);
+        pushData(LWHList, 0.0);
+        pushData(BWHList, 0.0);
+    } else
+    {
+        Kspeed = 0.05;
+        Move_X = -((float)VelX)*Kspeed;
+        Move_Y = ((float)VelY)*Kspeed;
+        Move_R = -((float)VelT)*Kspeed*0.8;
+
+        MotorSpeed[0] = (0.866)*Move_X - (-0.5)*Move_Y + Move_R;
+        MotorSpeed[1] = (-0.866)*Move_X - (-0.5)*Move_Y + Move_R;
+        MotorSpeed[2] = -Move_Y + Move_R;
+
+        pushData(LWHList, MotorSpeed[0]);
+        pushData(RWHList, MotorSpeed[1]);
+        pushData(BWHList, MotorSpeed[2]);
+        if(Move_X != 0 || Move_Y != 0 || Move_R != 0)
+        {
+//            printf("X = %f, Y = %f, Move_R = %f\n",Move_X, Move_Y, Move_R);
+        }
+    }
+    CalculateMovingEverage();
+
+    OMNImove.RWHinfo.MoveDistance_m += OMNImove.RWHinfo.WheelVel_ms;
+    OMNImove.LWHinfo.MoveDistance_m += OMNImove.LWHinfo.WheelVel_ms;
+    OMNImove.BWHinfo.MoveDistance_m += OMNImove.BWHinfo.WheelVel_ms;
+
+    joint->SetMoveJoint(RWH, OMNImove.RWHinfo.InitRef_Deg + OMNImove.RWHinfo.MoveDistance_m, 5, MOVE_ABSOLUTE);
+    joint->SetMoveJoint(BWH, OMNImove.BWHinfo.InitRef_Deg + OMNImove.BWHinfo.MoveDistance_m, 5, MOVE_ABSOLUTE);
+    joint->SetMoveJoint(LWH, OMNImove.LWHinfo.InitRef_Deg + OMNImove.LWHinfo.MoveDistance_m, 5, MOVE_ABSOLUTE);
+
+    VelX_before = VelX;
+    VelY_before = VelY;
+    VelT_before = VelT;
 }
 
 void ChangeManualMode()
@@ -2374,7 +2449,7 @@ void GripperTH()
         if(sharedSEN->EXF_R_Enabled)
             velocityRGripper = 100;
 
-        static int DoneR, DoneL = false;
+        static int DoneR, DoneL = true;
 
         switch(MODE_RGripper)
         {
@@ -2597,14 +2672,14 @@ void CalculateLIMITGripper()
         {//default(max open or close)
             if(MODE_Gripper == GRIPPER_OPEN)
             {
-                LIMIT_Gripper = -1.4;
+                LIMIT_Gripper = -58;
             }else
             {
                 LIMIT_Gripper = 0.;
             }
         }else
         {
-            double MaxOpenGripperEncoder = -1.49;
+            double MaxOpenGripperEncoder = -58;
             double MaxOpenGripperDistance = 125;
 
             LIMIT_Gripper = (DESIRED_Gripper*MaxOpenGripperEncoder)/MaxOpenGripperDistance;
