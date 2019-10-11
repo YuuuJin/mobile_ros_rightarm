@@ -771,7 +771,7 @@ void CalculateMovingEverage(void)
 
 void MoveWheelVelocity()
 {
-    printf("x = %f, y = %f, t = %f\n",sharedROS->Base_action.wheel.VelX,sharedROS->Base_action.wheel.VelY,sharedROS->Base_action.wheel.VelTheta);
+//    printf("x = %f, y = %f, t = %f\n",sharedROS->Base_action.wheel.VelX,sharedROS->Base_action.wheel.VelY,sharedROS->Base_action.wheel.VelTheta);
     VelX = VelX_before*0.2 + 0.8*sharedROS->Base_action.wheel.VelX;
     VelY = VelY_before*0.2 + 0.8*sharedROS->Base_action.wheel.VelY;
     VelT = VelT_before*0.2 + 0.8*sharedROS->Base_action.wheel.VelTheta;
@@ -786,7 +786,7 @@ void MoveWheelVelocity()
         pushData(BWHList, 0.0);
     } else
     {
-        Kspeed = 0.05;
+        Kspeed = 0.015;
         Move_X = -((float)VelX)*Kspeed;
         Move_Y = ((float)VelY)*Kspeed;
         Move_R = -((float)VelT)*Kspeed*0.8;
@@ -800,7 +800,7 @@ void MoveWheelVelocity()
         pushData(BWHList, MotorSpeed[2]);
         if(Move_X != 0 || Move_Y != 0 || Move_R != 0)
         {
-//            printf("X = %f, Y = %f, Move_R = %f\n",Move_X, Move_Y, Move_R);
+            printf("X = %f, Y = %f, Move_R = %f\n",Move_X, Move_Y, Move_R);
         }
     }
     CalculateMovingEverage();
@@ -2417,9 +2417,9 @@ void Write_Feedback()
     }
 
     if(FLAG_Gripper == true)
-        sharedROS->Gripper_feedback.result_flag = true;
-    else
         sharedROS->Gripper_feedback.result_flag = false;
+    else
+        sharedROS->Gripper_feedback.result_flag = true;
 }
 
 int CheckRobotState_BASE()
@@ -2451,6 +2451,7 @@ void GripperTH()
 
         static int DoneR, DoneL = true;
 
+        printf("CMD = %d\n",MODE_RGripper);
         switch(MODE_RGripper)
         {
         case GRIPPER_STOP:

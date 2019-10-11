@@ -160,7 +160,7 @@ void ROSWorker::ReadfromROS(){
     sharedROS->COMMAND.CMD_GRIPPER = RXData.ros2podo_data.CMD_GRIPPER;
     sharedROS->COMMAND.CMD_WHEEL = RXData.ros2podo_data.CMD_WHEEL;
     sharedROS->COMMAND.CMD_JOINT = RXData.ros2podo_data.CMD_JOINT;
-//    printf("CMD = %d, %d, %d\n",RXData.ros2podo_data.CMD_JOINT,RXData.ros2podo_data.CMD_GRIPPER,RXData.ros2podo_data.CMD_WHEEL);
+    printf("CMD = %d, %d, %d\n",RXData.ros2podo_data.CMD_JOINT,RXData.ros2podo_data.CMD_GRIPPER,RXData.ros2podo_data.CMD_WHEEL);
 //    printf("ref WST = %f\n",RXData.ros2podo_data.Arm_action.joint[rosWST].reference);
     //here!
 //    usleep(20*1000);
