@@ -37,6 +37,8 @@ typedef struct _PODO2ROS_DATA_
 typedef struct _ROS_JOINTREF_
 {
     JOINT_DATA ref[NUM_JOINTS];
+    int DoneFlag;
+    int StartFlag;
 }__attribute__((packed))ROS_JOINTREF;
 
 typedef QVector<ROS_JOINTREF>   ROS_JOINTREFs;
@@ -46,6 +48,7 @@ typedef struct _ROS_SHM_
     ROS_COMMAND COMMAND;
 
     int ROSindex;
+    int DoneFlag;
     MANIPULATOR_ACTION  Arm_action;
     BASE_ACTION         Base_action;
     GRIPPER_ACTION      Gripper_action;
