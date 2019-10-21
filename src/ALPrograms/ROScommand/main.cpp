@@ -2445,9 +2445,9 @@ void GripperTH()
         int velocityRGripper = 130;
         int velocityLGripper = 130;
         if(sharedSEN->EXF_L_Enabled)
-            velocityLGripper = 100;
+            velocityLGripper = 30;
         if(sharedSEN->EXF_R_Enabled)
-            velocityRGripper = 100;
+            velocityRGripper = 30;
 
         static int DoneR, DoneL = true;
 
@@ -2599,14 +2599,16 @@ int IsReadyTrajectory200Hz()
                 double a_f = 0;
 
                 if(t_iter == 0)
+                {
+                    v_i = 0.;
                     a_i = 0.;
+                }
 
                 if(t_iter < sharedROS->refsLen-2)
                 {
                     v_f = (sharedROS->refarray[t_iter+2].ref[j_iter].reference*R2Df - p_i)/(tf + sharedROS->refarray[t_iter+2].ref[j_iter].GoalmsTime);
                 }
 
-//                printf("%d   p_i = %f   p_f = %f    v_i = %f    a_i = %f    tf = %f     goalt = %f\n",j_iter, p_i, p_f, v_i, a_i, sharedROS->refarray[t_iter+1].ref[j_iter].GoalmsTime, tf);
                 MatrixXd M66 = MatrixXd::Zero(6,6);
                 M66 << 1, ti, ti*ti, ti*ti*ti, ti*ti*ti*ti, ti*ti*ti*ti*ti,
                       1, tf, tf*tf, tf*tf*tf, tf*tf*tf*tf, tf*tf*tf*tf*tf,
@@ -2620,19 +2622,13 @@ int IsReadyTrajectory200Hz()
                 VectorXd Coef16 = VectorXd::Zero(6);
                 Y16 << p_i, p_f, v_i, v_f, a_i, a_f;
 
-//                printf("%d,%d Y16    : %f, %f, %f, %f, %f, %f\n",t_iter, j_iter, Y16[0],Y16[1],Y16[2],Y16[3],Y16[4],Y16[5]);
                 Coef16 = M66_inv*Y16;
 
                 double t = 0.;
                 double tempPt   = 0.;
                 double tempdPt  = 0.;
                 double tempddPt = 0.;
-//                if(t_iter == 0)
-//                {
-//                    Pt[j_iter].p.push_back(p_i);
-//                    dPt[j_iter].p.push_back(tempdPt);
-//                    ddPt[j_iter].p.push_back(tempddPt);
-//                }
+
                 while(t < tf)
                 {
                     tempPt   = Coef16[0] + Coef16[1]*t + Coef16[2]*t*t + Coef16[3]*t*t*t + Coef16[4]*t*t*t*t + Coef16[5]*t*t*t*t*t;
@@ -2651,13 +2647,6 @@ int IsReadyTrajectory200Hz()
                 vel[j_iter][t_iter + 1] = tempdPt;
                 acc[j_iter][t_iter + 1] = tempddPt;
 
-                //if(j_iter == rosLSP)
-                {
-//                    printf("%d,%d Coef16 : %f, %f, %f, %f, %f, %f\n",t_iter, j_iter, Coef16[0],Coef16[1],Coef16[2],Coef16[3],Coef16[4],Coef16[5]);
-//                    printf("%d,%d Y16    : %f, %f, %f, %f, %f, %f\n",t_iter, j_iter, Y16[0],Y16[1],Y16[2],Y16[3],Y16[4],Y16[5]);
-//                    printf("Size = %d\n",Pt[0].p.size());
-
-                }
                 IsReady = true;
             }
         }

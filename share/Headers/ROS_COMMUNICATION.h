@@ -66,7 +66,7 @@ typedef struct _ROS_SHM_
     ROS_JOINTREFs            *refs;
     ROS_JOINTREFs            refs_interpolated;
     ROS_JOINTREF             ref;
-    ROS_JOINTREF            refarray[100];
+    ROS_JOINTREF            refarray[200];
     ROS_JOINTREFs::iterator  refsIter;
     int                      refsLen;
     double                   refsGoalTime[NUM_JOINTS];

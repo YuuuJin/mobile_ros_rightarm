@@ -26,7 +26,7 @@ MOVE          = mv -f
 TAR           = tar -cf
 COMPRESS      = gzip -9f
 DISTNAME      = ALPrograms1.0.0
-DISTDIR = /home/rainbow/rb5_ros_wrapper/mobile_ros_rightarm/build/ALBuild/.tmp/ALPrograms1.0.0
+DISTDIR = /home/yujin/Desktop/GitHub/mobile_ros_rightarm/build/ALBuild/.tmp/ALPrograms1.0.0
 SUBTARGETS    =  \
 		sub-PODOLAN \
 		sub-ROScommand
@@ -34,54 +34,54 @@ SUBTARGETS    =  \
 
 sub-PODOLAN-qmake_all:  FORCE
 	@test -d PODOLAN/ || mkdir -p PODOLAN/
-	cd PODOLAN/ && $(QMAKE) /home/rainbow/rb5_ros_wrapper/mobile_ros_rightarm/src/ALPrograms/PODOLAN/PODOLAN.pro -spec linux-g++ CONFIG+=debug CONFIG+=qml_debug -o Makefile
+	cd PODOLAN/ && $(QMAKE) /home/yujin/Desktop/GitHub/mobile_ros_rightarm/src/ALPrograms/PODOLAN/PODOLAN.pro -spec linux-g++ CONFIG+=debug CONFIG+=qml_debug -o Makefile
 	cd PODOLAN/ && $(MAKE) -f Makefile qmake_all
 sub-PODOLAN: FORCE
 	@test -d PODOLAN/ || mkdir -p PODOLAN/
-	cd PODOLAN/ && ( test -e Makefile || $(QMAKE) /home/rainbow/rb5_ros_wrapper/mobile_ros_rightarm/src/ALPrograms/PODOLAN/PODOLAN.pro -spec linux-g++ CONFIG+=debug CONFIG+=qml_debug -o Makefile ) && $(MAKE) -f Makefile
+	cd PODOLAN/ && ( test -e Makefile || $(QMAKE) /home/yujin/Desktop/GitHub/mobile_ros_rightarm/src/ALPrograms/PODOLAN/PODOLAN.pro -spec linux-g++ CONFIG+=debug CONFIG+=qml_debug -o Makefile ) && $(MAKE) -f Makefile
 sub-PODOLAN-make_first: FORCE
 	@test -d PODOLAN/ || mkdir -p PODOLAN/
-	cd PODOLAN/ && ( test -e Makefile || $(QMAKE) /home/rainbow/rb5_ros_wrapper/mobile_ros_rightarm/src/ALPrograms/PODOLAN/PODOLAN.pro -spec linux-g++ CONFIG+=debug CONFIG+=qml_debug -o Makefile ) && $(MAKE) -f Makefile 
+	cd PODOLAN/ && ( test -e Makefile || $(QMAKE) /home/yujin/Desktop/GitHub/mobile_ros_rightarm/src/ALPrograms/PODOLAN/PODOLAN.pro -spec linux-g++ CONFIG+=debug CONFIG+=qml_debug -o Makefile ) && $(MAKE) -f Makefile 
 sub-PODOLAN-all: FORCE
 	@test -d PODOLAN/ || mkdir -p PODOLAN/
-	cd PODOLAN/ && ( test -e Makefile || $(QMAKE) /home/rainbow/rb5_ros_wrapper/mobile_ros_rightarm/src/ALPrograms/PODOLAN/PODOLAN.pro -spec linux-g++ CONFIG+=debug CONFIG+=qml_debug -o Makefile ) && $(MAKE) -f Makefile all
+	cd PODOLAN/ && ( test -e Makefile || $(QMAKE) /home/yujin/Desktop/GitHub/mobile_ros_rightarm/src/ALPrograms/PODOLAN/PODOLAN.pro -spec linux-g++ CONFIG+=debug CONFIG+=qml_debug -o Makefile ) && $(MAKE) -f Makefile all
 sub-PODOLAN-clean: FORCE
 	@test -d PODOLAN/ || mkdir -p PODOLAN/
-	cd PODOLAN/ && ( test -e Makefile || $(QMAKE) /home/rainbow/rb5_ros_wrapper/mobile_ros_rightarm/src/ALPrograms/PODOLAN/PODOLAN.pro -spec linux-g++ CONFIG+=debug CONFIG+=qml_debug -o Makefile ) && $(MAKE) -f Makefile clean
+	cd PODOLAN/ && ( test -e Makefile || $(QMAKE) /home/yujin/Desktop/GitHub/mobile_ros_rightarm/src/ALPrograms/PODOLAN/PODOLAN.pro -spec linux-g++ CONFIG+=debug CONFIG+=qml_debug -o Makefile ) && $(MAKE) -f Makefile clean
 sub-PODOLAN-distclean: FORCE
 	@test -d PODOLAN/ || mkdir -p PODOLAN/
-	cd PODOLAN/ && ( test -e Makefile || $(QMAKE) /home/rainbow/rb5_ros_wrapper/mobile_ros_rightarm/src/ALPrograms/PODOLAN/PODOLAN.pro -spec linux-g++ CONFIG+=debug CONFIG+=qml_debug -o Makefile ) && $(MAKE) -f Makefile distclean
+	cd PODOLAN/ && ( test -e Makefile || $(QMAKE) /home/yujin/Desktop/GitHub/mobile_ros_rightarm/src/ALPrograms/PODOLAN/PODOLAN.pro -spec linux-g++ CONFIG+=debug CONFIG+=qml_debug -o Makefile ) && $(MAKE) -f Makefile distclean
 sub-PODOLAN-install_subtargets: FORCE
 	@test -d PODOLAN/ || mkdir -p PODOLAN/
-	cd PODOLAN/ && ( test -e Makefile || $(QMAKE) /home/rainbow/rb5_ros_wrapper/mobile_ros_rightarm/src/ALPrograms/PODOLAN/PODOLAN.pro -spec linux-g++ CONFIG+=debug CONFIG+=qml_debug -o Makefile ) && $(MAKE) -f Makefile install
+	cd PODOLAN/ && ( test -e Makefile || $(QMAKE) /home/yujin/Desktop/GitHub/mobile_ros_rightarm/src/ALPrograms/PODOLAN/PODOLAN.pro -spec linux-g++ CONFIG+=debug CONFIG+=qml_debug -o Makefile ) && $(MAKE) -f Makefile install
 sub-PODOLAN-uninstall_subtargets: FORCE
 	@test -d PODOLAN/ || mkdir -p PODOLAN/
-	cd PODOLAN/ && ( test -e Makefile || $(QMAKE) /home/rainbow/rb5_ros_wrapper/mobile_ros_rightarm/src/ALPrograms/PODOLAN/PODOLAN.pro -spec linux-g++ CONFIG+=debug CONFIG+=qml_debug -o Makefile ) && $(MAKE) -f Makefile uninstall
+	cd PODOLAN/ && ( test -e Makefile || $(QMAKE) /home/yujin/Desktop/GitHub/mobile_ros_rightarm/src/ALPrograms/PODOLAN/PODOLAN.pro -spec linux-g++ CONFIG+=debug CONFIG+=qml_debug -o Makefile ) && $(MAKE) -f Makefile uninstall
 sub-ROScommand-qmake_all:  FORCE
 	@test -d ROScommand/ || mkdir -p ROScommand/
-	cd ROScommand/ && $(QMAKE) /home/rainbow/rb5_ros_wrapper/mobile_ros_rightarm/src/ALPrograms/ROScommand/ROScommand.pro -spec linux-g++ CONFIG+=debug CONFIG+=qml_debug -o Makefile
+	cd ROScommand/ && $(QMAKE) /home/yujin/Desktop/GitHub/mobile_ros_rightarm/src/ALPrograms/ROScommand/ROScommand.pro -spec linux-g++ CONFIG+=debug CONFIG+=qml_debug -o Makefile
 	cd ROScommand/ && $(MAKE) -f Makefile qmake_all
 sub-ROScommand: FORCE
 	@test -d ROScommand/ || mkdir -p ROScommand/
-	cd ROScommand/ && ( test -e Makefile || $(QMAKE) /home/rainbow/rb5_ros_wrapper/mobile_ros_rightarm/src/ALPrograms/ROScommand/ROScommand.pro -spec linux-g++ CONFIG+=debug CONFIG+=qml_debug -o Makefile ) && $(MAKE) -f Makefile
+	cd ROScommand/ && ( test -e Makefile || $(QMAKE) /home/yujin/Desktop/GitHub/mobile_ros_rightarm/src/ALPrograms/ROScommand/ROScommand.pro -spec linux-g++ CONFIG+=debug CONFIG+=qml_debug -o Makefile ) && $(MAKE) -f Makefile
 sub-ROScommand-make_first: FORCE
 	@test -d ROScommand/ || mkdir -p ROScommand/
-	cd ROScommand/ && ( test -e Makefile || $(QMAKE) /home/rainbow/rb5_ros_wrapper/mobile_ros_rightarm/src/ALPrograms/ROScommand/ROScommand.pro -spec linux-g++ CONFIG+=debug CONFIG+=qml_debug -o Makefile ) && $(MAKE) -f Makefile 
+	cd ROScommand/ && ( test -e Makefile || $(QMAKE) /home/yujin/Desktop/GitHub/mobile_ros_rightarm/src/ALPrograms/ROScommand/ROScommand.pro -spec linux-g++ CONFIG+=debug CONFIG+=qml_debug -o Makefile ) && $(MAKE) -f Makefile 
 sub-ROScommand-all: FORCE
 	@test -d ROScommand/ || mkdir -p ROScommand/
-	cd ROScommand/ && ( test -e Makefile || $(QMAKE) /home/rainbow/rb5_ros_wrapper/mobile_ros_rightarm/src/ALPrograms/ROScommand/ROScommand.pro -spec linux-g++ CONFIG+=debug CONFIG+=qml_debug -o Makefile ) && $(MAKE) -f Makefile all
+	cd ROScommand/ && ( test -e Makefile || $(QMAKE) /home/yujin/Desktop/GitHub/mobile_ros_rightarm/src/ALPrograms/ROScommand/ROScommand.pro -spec linux-g++ CONFIG+=debug CONFIG+=qml_debug -o Makefile ) && $(MAKE) -f Makefile all
 sub-ROScommand-clean: FORCE
 	@test -d ROScommand/ || mkdir -p ROScommand/
-	cd ROScommand/ && ( test -e Makefile || $(QMAKE) /home/rainbow/rb5_ros_wrapper/mobile_ros_rightarm/src/ALPrograms/ROScommand/ROScommand.pro -spec linux-g++ CONFIG+=debug CONFIG+=qml_debug -o Makefile ) && $(MAKE) -f Makefile clean
+	cd ROScommand/ && ( test -e Makefile || $(QMAKE) /home/yujin/Desktop/GitHub/mobile_ros_rightarm/src/ALPrograms/ROScommand/ROScommand.pro -spec linux-g++ CONFIG+=debug CONFIG+=qml_debug -o Makefile ) && $(MAKE) -f Makefile clean
 sub-ROScommand-distclean: FORCE
 	@test -d ROScommand/ || mkdir -p ROScommand/
-	cd ROScommand/ && ( test -e Makefile || $(QMAKE) /home/rainbow/rb5_ros_wrapper/mobile_ros_rightarm/src/ALPrograms/ROScommand/ROScommand.pro -spec linux-g++ CONFIG+=debug CONFIG+=qml_debug -o Makefile ) && $(MAKE) -f Makefile distclean
+	cd ROScommand/ && ( test -e Makefile || $(QMAKE) /home/yujin/Desktop/GitHub/mobile_ros_rightarm/src/ALPrograms/ROScommand/ROScommand.pro -spec linux-g++ CONFIG+=debug CONFIG+=qml_debug -o Makefile ) && $(MAKE) -f Makefile distclean
 sub-ROScommand-install_subtargets: FORCE
 	@test -d ROScommand/ || mkdir -p ROScommand/
-	cd ROScommand/ && ( test -e Makefile || $(QMAKE) /home/rainbow/rb5_ros_wrapper/mobile_ros_rightarm/src/ALPrograms/ROScommand/ROScommand.pro -spec linux-g++ CONFIG+=debug CONFIG+=qml_debug -o Makefile ) && $(MAKE) -f Makefile install
+	cd ROScommand/ && ( test -e Makefile || $(QMAKE) /home/yujin/Desktop/GitHub/mobile_ros_rightarm/src/ALPrograms/ROScommand/ROScommand.pro -spec linux-g++ CONFIG+=debug CONFIG+=qml_debug -o Makefile ) && $(MAKE) -f Makefile install
 sub-ROScommand-uninstall_subtargets: FORCE
 	@test -d ROScommand/ || mkdir -p ROScommand/
-	cd ROScommand/ && ( test -e Makefile || $(QMAKE) /home/rainbow/rb5_ros_wrapper/mobile_ros_rightarm/src/ALPrograms/ROScommand/ROScommand.pro -spec linux-g++ CONFIG+=debug CONFIG+=qml_debug -o Makefile ) && $(MAKE) -f Makefile uninstall
+	cd ROScommand/ && ( test -e Makefile || $(QMAKE) /home/yujin/Desktop/GitHub/mobile_ros_rightarm/src/ALPrograms/ROScommand/ROScommand.pro -spec linux-g++ CONFIG+=debug CONFIG+=qml_debug -o Makefile ) && $(MAKE) -f Makefile uninstall
 
 Makefile: ../../src/ALPrograms/ALPrograms.pro /opt/Qt5.7.0/5.7/gcc_64/mkspecs/linux-g++/qmake.conf /opt/Qt5.7.0/5.7/gcc_64/mkspecs/features/spec_pre.prf \
 		/opt/Qt5.7.0/5.7/gcc_64/mkspecs/common/unix.conf \
@@ -396,18 +396,18 @@ uninstall_subtargets: sub-PODOLAN-uninstall_subtargets sub-ROScommand-uninstall_
 
 sub-PODOLAN-check:
 	@test -d PODOLAN/ || mkdir -p PODOLAN/
-	cd PODOLAN/ && ( test -e Makefile || $(QMAKE) /home/rainbow/rb5_ros_wrapper/mobile_ros_rightarm/src/ALPrograms/PODOLAN/PODOLAN.pro -spec linux-g++ CONFIG+=debug CONFIG+=qml_debug -o Makefile ) && $(MAKE) -f Makefile check
+	cd PODOLAN/ && ( test -e Makefile || $(QMAKE) /home/yujin/Desktop/GitHub/mobile_ros_rightarm/src/ALPrograms/PODOLAN/PODOLAN.pro -spec linux-g++ CONFIG+=debug CONFIG+=qml_debug -o Makefile ) && $(MAKE) -f Makefile check
 sub-ROScommand-check:
 	@test -d ROScommand/ || mkdir -p ROScommand/
-	cd ROScommand/ && ( test -e Makefile || $(QMAKE) /home/rainbow/rb5_ros_wrapper/mobile_ros_rightarm/src/ALPrograms/ROScommand/ROScommand.pro -spec linux-g++ CONFIG+=debug CONFIG+=qml_debug -o Makefile ) && $(MAKE) -f Makefile check
+	cd ROScommand/ && ( test -e Makefile || $(QMAKE) /home/yujin/Desktop/GitHub/mobile_ros_rightarm/src/ALPrograms/ROScommand/ROScommand.pro -spec linux-g++ CONFIG+=debug CONFIG+=qml_debug -o Makefile ) && $(MAKE) -f Makefile check
 check: sub-PODOLAN-check sub-ROScommand-check
 
 sub-PODOLAN-benchmark:
 	@test -d PODOLAN/ || mkdir -p PODOLAN/
-	cd PODOLAN/ && ( test -e Makefile || $(QMAKE) /home/rainbow/rb5_ros_wrapper/mobile_ros_rightarm/src/ALPrograms/PODOLAN/PODOLAN.pro -spec linux-g++ CONFIG+=debug CONFIG+=qml_debug -o Makefile ) && $(MAKE) -f Makefile benchmark
+	cd PODOLAN/ && ( test -e Makefile || $(QMAKE) /home/yujin/Desktop/GitHub/mobile_ros_rightarm/src/ALPrograms/PODOLAN/PODOLAN.pro -spec linux-g++ CONFIG+=debug CONFIG+=qml_debug -o Makefile ) && $(MAKE) -f Makefile benchmark
 sub-ROScommand-benchmark:
 	@test -d ROScommand/ || mkdir -p ROScommand/
-	cd ROScommand/ && ( test -e Makefile || $(QMAKE) /home/rainbow/rb5_ros_wrapper/mobile_ros_rightarm/src/ALPrograms/ROScommand/ROScommand.pro -spec linux-g++ CONFIG+=debug CONFIG+=qml_debug -o Makefile ) && $(MAKE) -f Makefile benchmark
+	cd ROScommand/ && ( test -e Makefile || $(QMAKE) /home/yujin/Desktop/GitHub/mobile_ros_rightarm/src/ALPrograms/ROScommand/ROScommand.pro -spec linux-g++ CONFIG+=debug CONFIG+=qml_debug -o Makefile ) && $(MAKE) -f Makefile benchmark
 benchmark: sub-PODOLAN-benchmark sub-ROScommand-benchmark
 install:install_subtargets  FORCE
 
@@ -424,9 +424,9 @@ distdir: sub-PODOLAN-distdir sub-ROScommand-distdir FORCE
 
 sub-PODOLAN-distdir: FORCE
 	@test -d PODOLAN/ || mkdir -p PODOLAN/
-	cd PODOLAN/ && ( test -e Makefile || $(QMAKE) /home/rainbow/rb5_ros_wrapper/mobile_ros_rightarm/src/ALPrograms/PODOLAN/PODOLAN.pro -spec linux-g++ CONFIG+=debug CONFIG+=qml_debug -o Makefile ) && $(MAKE) -e -f Makefile distdir DISTDIR=$(DISTDIR)/PODOLAN
+	cd PODOLAN/ && ( test -e Makefile || $(QMAKE) /home/yujin/Desktop/GitHub/mobile_ros_rightarm/src/ALPrograms/PODOLAN/PODOLAN.pro -spec linux-g++ CONFIG+=debug CONFIG+=qml_debug -o Makefile ) && $(MAKE) -e -f Makefile distdir DISTDIR=$(DISTDIR)/PODOLAN
 
 sub-ROScommand-distdir: FORCE
 	@test -d ROScommand/ || mkdir -p ROScommand/
-	cd ROScommand/ && ( test -e Makefile || $(QMAKE) /home/rainbow/rb5_ros_wrapper/mobile_ros_rightarm/src/ALPrograms/ROScommand/ROScommand.pro -spec linux-g++ CONFIG+=debug CONFIG+=qml_debug -o Makefile ) && $(MAKE) -e -f Makefile distdir DISTDIR=$(DISTDIR)/ROScommand
+	cd ROScommand/ && ( test -e Makefile || $(QMAKE) /home/yujin/Desktop/GitHub/mobile_ros_rightarm/src/ALPrograms/ROScommand/ROScommand.pro -spec linux-g++ CONFIG+=debug CONFIG+=qml_debug -o Makefile ) && $(MAKE) -e -f Makefile distdir DISTDIR=$(DISTDIR)/ROScommand
 

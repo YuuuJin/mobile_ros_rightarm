@@ -33,7 +33,7 @@ MOVE          = mv -f
 TAR           = tar -cf
 COMPRESS      = gzip -9f
 DISTNAME      = ROScommand1.0.0
-DISTDIR = /home/rainbow/rb5_ros_wrapper/mobile_ros_rightarm/build/ALBuild/ROScommand/.tmp/ROScommand1.0.0
+DISTDIR = /home/yujin/Desktop/GitHub/mobile_ros_rightarm/build/ALBuild/ROScommand/.tmp/ROScommand1.0.0
 LINK          = g++
 LFLAGS        = /usr/lib/xenomai/bootstrap.o -Wl,--wrap=main -Wl,--dynamic-list=/usr/lib/dynlist.ld -L/usr/lib -lcobalt -lpthread -lrt -Wl,-rpath,/opt/Qt5.7.0/5.7/gcc_64/lib
 LIBS          = $(SUBLIBS) -lalchemy -lcopperplate -lcobalt -lrt -lpcan -L../../../share/Libs -lKINE_DRC_HUBO2 -lik_math2 -L/opt/Qt5.7.0/5.7/gcc_64/lib -lQt5Core -lpthread 
