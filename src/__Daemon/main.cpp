@@ -1337,8 +1337,6 @@ void RBCMD_AttrControlMode(){
     }else{  // Each
         _DEV_MC[id].Joints[ch].ControlMode = mode;
     }
-
-    printf("RHAND = %d, LHAND = %d\n",_DEV_MC[MC_GetID(RHAND)].Joints[MC_GetCH(RHAND)].ControlMode,_DEV_MC[MC_GetID(LHAND)].Joints[MC_GetCH(LHAND)].ControlMode);
 }
 
 void RBCMD_SensorEncoderReset(){

@@ -2426,6 +2426,11 @@ int CheckRobotState_BASE()
 {
     if(sharedROS->state_base == BASE_NOT_MOVE)
     {
+        if(sharedROS->Base_action.wheel.MoveX == 0. && sharedROS->Base_action.wheel.MoveY == 0. && sharedROS->Base_action.wheel.ThetaDeg == 0.)
+        {
+            FILE_LOG(logERROR) << "Base action input error. Disregard commands";
+            return false;
+        }
         return true;
     } else
     {
