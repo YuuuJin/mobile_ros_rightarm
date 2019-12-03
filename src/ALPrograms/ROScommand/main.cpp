@@ -307,7 +307,7 @@ int main(int argc, char *argv[])
         case MODE_SAVE:
         {
             FILE_LOG(logSUCCESS) << "NEW COMMAND :: DATA SAVE11";
-            fp = fopen("/home/yujin/Desktop/dataPODO.txt","w");
+            fp = fopen("dataPODO_KIST.txt","w");
             for(int i=0;i<Save_Index;i++)
             {
                 for(int j=0;j<COL;j++)fprintf(fp,"%g\t", Save_Data[j][i]);
@@ -2913,27 +2913,52 @@ void save()
     if(Save_Index < ROW)
     {
         Save_Data[0][Save_Index] = sharedROS->ROSindex;
-        Save_Data[1][Save_Index] = sharedROS->Arm_action.joint[rosRSP].reference;
-        Save_Data[2][Save_Index] = sharedROS->Arm_action.wbik[RIGHT_HAND].Goal_pos[0];
-        Save_Data[3][Save_Index] = sharedROS->Base_action.wheel.MoveX;
+        Save_Data[1][Save_Index] = sharedROS->Arm_action.joint[rosRSP ].reference;
+        Save_Data[2][Save_Index] = sharedROS->Arm_action.joint[rosRSR ].reference;
+        Save_Data[3][Save_Index] = sharedROS->Arm_action.joint[rosRSY ].reference;
+        Save_Data[4][Save_Index] = sharedROS->Arm_action.joint[rosREB ].reference;
+        Save_Data[5][Save_Index] = sharedROS->Arm_action.joint[rosRWY ].reference;
+        Save_Data[6][Save_Index] = sharedROS->Arm_action.joint[rosRWP ].reference;
+        Save_Data[7][Save_Index] = sharedROS->Arm_action.joint[rosRWY2].reference;
 
-        Save_Data[4][Save_Index] = sharedROS->Arm_feedback.joint[rosRSP].reference;
-        Save_Data[5][Save_Index] = sharedROS->Arm_feedback.wbik[RIGHT_HAND].Goal_pos[0];
-        Save_Data[6][Save_Index] = sharedROS->Base_feedback.wheel.MoveX;
+        Save_Data[8][Save_Index] = sharedSEN->ENCODER[MC_ID_CH_Pairs[RSP ].id][MC_ID_CH_Pairs[RSP ].ch].CurrentReference;
+        Save_Data[9][Save_Index] = sharedSEN->ENCODER[MC_ID_CH_Pairs[RSR ].id][MC_ID_CH_Pairs[RSR ].ch].CurrentReference;
+        Save_Data[10][Save_Index] = sharedSEN->ENCODER[MC_ID_CH_Pairs[RSY ].id][MC_ID_CH_Pairs[RSY ].ch].CurrentReference;
+        Save_Data[11][Save_Index] = sharedSEN->ENCODER[MC_ID_CH_Pairs[REB ].id][MC_ID_CH_Pairs[REB ].ch].CurrentReference;
+        Save_Data[12][Save_Index] = sharedSEN->ENCODER[MC_ID_CH_Pairs[RWY ].id][MC_ID_CH_Pairs[RWY ].ch].CurrentReference;
+        Save_Data[13][Save_Index] = sharedSEN->ENCODER[MC_ID_CH_Pairs[RWP ].id][MC_ID_CH_Pairs[RWP ].ch].CurrentReference;
+        Save_Data[14][Save_Index] = sharedSEN->ENCODER[MC_ID_CH_Pairs[RWY2].id][MC_ID_CH_Pairs[RWY2].ch].CurrentReference;
 
-        Save_Data[7][Save_Index] = sharedSEN->ENCODER[MC_ID_CH_Pairs[WST].id][MC_ID_CH_Pairs[WST].ch].CurrentReference;
-        Save_Data[8][Save_Index] = sharedROS->Arm_feedback.wbik[WAIST].Goal_angle;
-        Save_Data[9][Save_Index] = sharedROS->joint_before[rosWST].reference;
-        Save_Data[10][Save_Index] = sharedROS->joint_before[rosREB].reference;
-        Save_Data[11][Save_Index] = sharedROS->Arm_action.joint[rosWST].reference;
+        Save_Data[15][Save_Index] = sharedSEN->ENCODER[MC_ID_CH_Pairs[RSP ].id][MC_ID_CH_Pairs[RSP ].ch].CurrentPosition;
+        Save_Data[16][Save_Index] = sharedSEN->ENCODER[MC_ID_CH_Pairs[RSR ].id][MC_ID_CH_Pairs[RSR ].ch].CurrentPosition;
+        Save_Data[17][Save_Index] = sharedSEN->ENCODER[MC_ID_CH_Pairs[RSY ].id][MC_ID_CH_Pairs[RSY ].ch].CurrentPosition;
+        Save_Data[18][Save_Index] = sharedSEN->ENCODER[MC_ID_CH_Pairs[REB ].id][MC_ID_CH_Pairs[REB ].ch].CurrentPosition;
+        Save_Data[19][Save_Index] = sharedSEN->ENCODER[MC_ID_CH_Pairs[RWY ].id][MC_ID_CH_Pairs[RWY ].ch].CurrentPosition;
+        Save_Data[20][Save_Index] = sharedSEN->ENCODER[MC_ID_CH_Pairs[RWP ].id][MC_ID_CH_Pairs[RWP ].ch].CurrentPosition;
+        Save_Data[21][Save_Index] = sharedSEN->ENCODER[MC_ID_CH_Pairs[RWY2].id][MC_ID_CH_Pairs[RWY2].ch].CurrentPosition;
 
-        Save_Data[12][Save_Index] = sharedSEN->ENCODER[MC_ID_CH_Pairs[RSP].id][MC_ID_CH_Pairs[RSP].ch].CurrentReference;
-        Save_Data[13][Save_Index] = curPt[rosRSP];
-        Save_Data[14][Save_Index] = curdPt[rosRSP];
-        Save_Data[15][Save_Index] = curddPt[rosRSP];
-        Save_Data[16][Save_Index] = joint->GetJointRefAngle(RSP);
-        Save_Data[17][Save_Index] = sharedREF->JointReference[PODO_NO][MC_ID_CH_Pairs[RSP].id][MC_ID_CH_Pairs[RSP].ch];
-        Save_Data[18][Save_Index] = sharedCMD->MotionOwner[MC_ID_CH_Pairs[RSP].id][MC_ID_CH_Pairs[RSP].ch];
+        Save_Data[22][Save_Index] = curPt  [rosRSP];
+        Save_Data[23][Save_Index] = curdPt [rosRSP];
+        Save_Data[24][Save_Index] = curddPt[rosRSP];
+        Save_Data[25][Save_Index] = curPt  [rosRSR];
+        Save_Data[26][Save_Index] = curdPt [rosRSR];
+        Save_Data[27][Save_Index] = curddPt[rosRSR];
+        Save_Data[28][Save_Index] = curPt  [rosRSY];
+        Save_Data[29][Save_Index] = curdPt [rosRSY];
+        Save_Data[30][Save_Index] = curddPt[rosRSY];
+        Save_Data[31][Save_Index] = curPt  [rosREB];
+        Save_Data[32][Save_Index] = curdPt [rosREB];
+        Save_Data[33][Save_Index] = curddPt[rosREB];
+        Save_Data[34][Save_Index] = curPt  [rosRWY];
+        Save_Data[35][Save_Index] = curdPt [rosRWY];
+        Save_Data[36][Save_Index] = curddPt[rosRWY];
+        Save_Data[37][Save_Index] = curPt  [rosRWP];
+        Save_Data[38][Save_Index] = curdPt [rosRWP];
+        Save_Data[39][Save_Index] = curddPt[rosRWP];
+        Save_Data[40][Save_Index] = curPt  [rosRWY2];
+        Save_Data[41][Save_Index] = curdPt [rosRWY2];
+        Save_Data[42][Save_Index] = curddPt[rosRWY2];
+
         Save_Index++;
         if(Save_Index >= ROW) Save_Index = 0;
     }
